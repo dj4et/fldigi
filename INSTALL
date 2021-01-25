@@ -14,6 +14,8 @@ To compile fldigi you will need:
 
   * The PNG library.
 
+  * sndfile library.
+
   * The libxft library.
 
 You should read and follow the instructions for building on various OS
@@ -21,10 +23,18 @@ platforms that are on the fldigi wiki:
 
 http://www.w1hkj.com/doku/doku.php?id=howtos
 
-The simplest way to compile this package on Linux is:
 
-  1. `cd' to the directory containing the package's source code and type
-     `./configure' to configure the package for your system.
+To install the dependencies on a Debian (version bullseye) system install the packages
+ `$ sudo apt install libfltk1.3-dev libpng-dev libsamplerate-dev libsndfile-dev portaudio19-dev'
+
+To build the application with GNU Autotools
+
+  1. `cd' to the directory containing the package's source code.
+
+    Repository is in maintainer mode: the "configure" file has to be created first.
+      `$ autoreconf -i'
+      `$ autoconf'
+      `$ ./configure'
 
      Running `configure' might take a while.  While running, it prints
      some messages telling which features it is checking for.
@@ -34,14 +44,18 @@ The simplest way to compile this package on Linux is:
   3. Optionally, type `make check' to run any self-tests that come with
      the package.
 
-  4. Type `make install' to install the programs and any data files and
-     documentation.
+  4. Type `sudo make install' to install the programs and any data files and
+     documentation (the default destination in "/usr/local" requires admin
+     rights).
 
   5. You can remove the program binaries and object files from the
      source code directory by typing `make clean'.  To also remove the
      files that `configure' created (so you can compile the package for
-     a different kind of computer), type `make distclean'.  There is
-     also a `make maintainer-clean' target, but that is intended mainly
+     a different kind of computer), type `make distclean'.
+
+  6. There is also a `make maintainer-clean' target, but that is intended mainly
      for the package's developers.  If you use it, you may have to get
      all sorts of other programs in order to regenerate files that came
      with the distribution.
+
+  To learn more about GNU Autotools: https://en.wikipedia.org/wiki/GNU_Autotools
